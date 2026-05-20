@@ -1,32 +1,46 @@
 # DrivenInsights Used Car Price Prediction
 
-Machine learning project for estimating fair market used-car prices from vehicle specifications and mileage.
+DrivenInsights is a machine learning project for estimating fair market value of used vehicles. The original coursework used PySpark models over a cleaned used-car dataset; this portfolio version preserves the notebook reference while adding a production-style Python training pipeline and Flask inference app.
 
-## Portfolio Context
+## Technical Scope
 
-This repository is a cleaned public portfolio version of coursework/project material maintained under Snega Murugan's GitHub profile. Raw folders, virtual environments, private keys, and large datasets were intentionally excluded.
+The model uses vehicle make, model year, mileage, horsepower, fuel type, and body type to predict price. The training script compares Ridge Regression, Random Forest, and Gradient Boosting using R2, MAE, and RMSE, then serializes the best model with `joblib`.
 
-## Features
+This is intentionally more than a dashboard: it demonstrates model training, model selection, artifact persistence, and a lightweight API surface for prediction.
 
-- Professional Streamlit dashboard or app entrypoint.
-- Sample data included so the project can run without private credentials.
-- Original analysis/code artifacts preserved where safe.
-- Clear setup and run instructions for recruiters and technical reviewers.
+## Files
 
-## Setup
+- `notebooks/used_cars.ipynb` - original notebook reference from the coursework.
+- `train_model.py` - reproducible scikit-learn training pipeline.
+- `app.py` - Flask web app and JSON prediction API.
+- `data/used_cars_sample.csv` - safe sample data for public execution.
+- `models/` - generated locally when training runs; ignored by Git.
+
+## Run Training
 
 ```powershell
 python -m venv .venv
-.\.venv\Scriptsctivate
+.\.venv\Scripts\activate
 pip install -r requirements.txt
+python train_model.py
 ```
 
-## Run
+## Run Flask App
 
 ```powershell
-streamlit run streamlit_app.py
+python app.py
 ```
 
-## Notes
+Open `http://127.0.0.1:5000`.
 
-- This is an educational portfolio project. Validate results before using them for business or policy decisions.
+## API Example
+
+```powershell
+curl -X POST http://127.0.0.1:5000/predict `
+  -H "Content-Type: application/json" `
+  -d "{\"make\":\"Toyota\",\"year\":2021,\"mileage\":45000,\"horsepower\":210,\"fuel_type\":\"Hybrid\",\"body_type\":\"SUV\"}"
+```
+
+## Portfolio Note
+
+The original dataset links are documented in `docs/Source.txt`. A compact sample dataset is included so reviewers can run the project without downloading large files.
