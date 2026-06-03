@@ -1,12 +1,12 @@
 # DrivenInsights Used Car Price Prediction
 
-DrivenInsights is a machine learning project for estimating fair market value of used vehicles. The original coursework used PySpark models over a cleaned used-car dataset; this portfolio version preserves the notebook reference while adding a production-style Python training pipeline and Flask inference app.
+DrivenInsights is a machine learning project for estimating fair market value of used vehicles. The original coursework used PySpark models over a cleaned used-car dataset; this portfolio version preserves the notebook reference while adding a production-style Python training pipeline and Flask inference app. The original Spark workflow is also compatible with Azure Databricks-style notebook execution because it relies on standard Spark ML components.
 
 ## Technical Scope
 
 The model uses vehicle make, model year, mileage, horsepower, fuel type, and body type to predict price. The training script compares Ridge Regression, Random Forest, and Gradient Boosting using R2, MAE, and RMSE, then serializes the best model with `joblib`.
 
-This is intentionally more than a dashboard: it demonstrates model training, model selection, artifact persistence, and a lightweight API surface for prediction.
+This is intentionally more than a dashboard: it demonstrates model training, model selection, artifact persistence, and a lightweight API surface for prediction, while still reflecting a Spark/Databricks-ready analytics workflow in the original coursework.
 
 ## Files
 
